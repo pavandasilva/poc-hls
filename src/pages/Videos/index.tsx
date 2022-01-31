@@ -16,12 +16,7 @@ export const Videos = () => {
           playerRef={playerRef}
           muted
         />
-      </div>
-      
-      <h2>Manual</h2>
-      <video  width="270" height="240" controls autoPlay muted>
-        <source src="https://pavantest212.s3.us-east-2.amazonaws.com/multires/hls/360_out.m3u8" type="video/mp4"  />
-      </video>
+      </div> 
     </div>
   )
 }
