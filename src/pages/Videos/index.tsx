@@ -1,17 +1,42 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import ReactHlsPlayer from 'react-hls-player';
 
 export const Videos = () => {
   const playerRef = React.useRef<HTMLVideoElement | null>(null);
-
-  const isVideoPlaying = () => !!(playerRef.current?.currentTime && playerRef.current?.currentTime > 0 && !playerRef.current?.paused && !playerRef.current?.ended && playerRef.current?.readyState > 2);
-
+  const [isPlaying, setIsPlaying] = useState(()=> false)
   const [linkStream, setLinkStream] = useState(()=> "https://d2we8z90utluth.cloudfront.net/files/hls/2/out.m3u8" );
   const [linkVideo, setLinkVideo] = useState(()=> "https://d2we8z90utluth.cloudfront.net/files/videos/405x720_72f3c1ca-05f3-4e39-a2a8-7021092a7f50.mp4" );
+  const [muted, setMuted] = useState(true)
+
+
+  useEffect(() => {
+    console.log('onLoad')
+
+    function fireOnVideoStart() {
+      console.log('start')
+
+      setMuted(false)
+    }
+
+    playerRef.current?.addEventListener('play', fireOnVideoStart);
+  }, [playerRef]);
+
+
+  /* useEffect(() => {
+    console.log('useEffect')
+
+    if(!playerRef.current?.currentTime){
+      setIsPlaying(false);
+      return;
+    }
+
+    setIsPlaying(playerRef.current?.currentTime > 1)
+  }, [playerRef?.current?.currentTime]) */
+
 
   return (
     <div style={{display: 'flex', flexDirection: 'row', padding: '0px 30px'}}>  
-      <div>{isVideoPlaying()}</div>
+      <div>{isPlaying ? 'isPlayng' : 'notIsPlayng'}</div>
 
       <div style={{display: 'flex', flexDirection: 'column'}}>
         <h2>Player HLS</h2>  
@@ -20,7 +45,7 @@ export const Videos = () => {
         <div>
           <ReactHlsPlayer
             src={linkStream}
-            muted
+            muted={muted}
             autoPlay
             controls
             width="349" height="720"
