@@ -9,8 +9,6 @@ export const Videos = () => {
 
 
   useEffect(() => {
-    console.log('onLoad')
-
     function fireOnVideoStart() {
       console.log('start')
 
@@ -20,23 +18,8 @@ export const Videos = () => {
     playerRef.current?.addEventListener('play', fireOnVideoStart);
   }, [playerRef]);
 
-
-  /* useEffect(() => {
-    console.log('useEffect')
-
-    if(!playerRef.current?.currentTime){
-      setIsPlaying(false);
-      return;
-    }
-
-    setIsPlaying(playerRef.current?.currentTime > 1)
-  }, [playerRef?.current?.currentTime]) */
-
-
   return (
     <div style={{display: 'flex', flexDirection: 'row', padding: '0px 30px'}}>  
-      <div>{isPlaying ? 'isPlayng' : 'notIsPlayng'}</div>
-
       <div style={{display: 'flex', flexDirection: 'column'}}>
         <h2>Player HLS</h2>  
         <label>link .m3u8</label><input type="text" onChange={(event)=> setLinkStream(event.target.value)}/>
