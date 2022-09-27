@@ -3,7 +3,6 @@ import ReactHlsPlayer from 'react-hls-player';
 
 export const Videos = () => {
   const playerRef = React.useRef<HTMLVideoElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(()=> false)
   const [linkStream, setLinkStream] = useState(()=> "https://d2we8z90utluth.cloudfront.net/files/hls/2/out.m3u8" );
   const [linkVideo, setLinkVideo] = useState(()=> "https://d2we8z90utluth.cloudfront.net/files/videos/405x720_72f3c1ca-05f3-4e39-a2a8-7021092a7f50.mp4" );
   const [muted, setMuted] = useState(true)
