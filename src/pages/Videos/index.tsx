@@ -5,18 +5,6 @@ export const Videos = () => {
   const playerRef = React.useRef<HTMLVideoElement | null>(null);
   const [linkStream, setLinkStream] = useState(()=> "https://d2we8z90utluth.cloudfront.net/files/hls/2/out.m3u8" );
   const [linkVideo, setLinkVideo] = useState(()=> "https://d2we8z90utluth.cloudfront.net/files/videos/405x720_72f3c1ca-05f3-4e39-a2a8-7021092a7f50.mp4" );
-  const [muted, setMuted] = useState(true)
-
-
-  useEffect(() => {
-    function fireOnVideoStart() {
-      console.log('start')
-
-      setMuted(false)
-    }
-
-    playerRef.current?.addEventListener('play', fireOnVideoStart);
-  }, [playerRef]);
 
   return (
     <div style={{display: 'flex', flexDirection: 'row', padding: '0px 30px'}}>  
@@ -27,7 +15,7 @@ export const Videos = () => {
         <div>
           <ReactHlsPlayer
             src={linkStream}
-            muted={muted}
+            muted
             autoPlay
             controls
             width="349" height="720"
