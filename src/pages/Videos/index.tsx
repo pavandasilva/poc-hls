@@ -3,7 +3,7 @@ import ReactHlsPlayer from 'react-hls-player';
 
 export const Videos = () => {
   const playerRef = React.useRef<HTMLVideoElement | null>(null);
-  const [linkStream, setLinkStream] = useState(()=> "https://d2we8z90utluth.cloudfront.net/files/hls/2/out.m3u8" );
+  const [linkStream, setLinkStream] = useState(()=> "https://d2we8z90utluth.cloudfront.net/files/videos/c68de2de-4a00-4b6c-97dd-34c4fa4ed09a/405x720_c68de2de-4a00-4b6c-97dd-34c4fa4ed09a.m3u8" );
   const [linkVideo, setLinkVideo] = useState(()=> "https://d2we8z90utluth.cloudfront.net/files/videos/405x720_72f3c1ca-05f3-4e39-a2a8-7021092a7f50.mp4" );
 
   return (
@@ -16,7 +16,8 @@ export const Videos = () => {
           <ReactHlsPlayer
             src={linkStream}
             muted
-            autoPlay
+            playsInline
+            autoPlay={true}
             controls
             width="349" height="720"
             playerRef={playerRef}
@@ -35,7 +36,7 @@ export const Videos = () => {
         <label>link .mp4</label><input type="text" onChange={(event)=> setLinkVideo(event.target.value)}/>
         <caption>Playing {linkVideo}</caption>
         <div>
-          <video width="349" height="720" controls autoPlay muted>
+          <video width="349" height="720" controls autoPlay muted  playsInline>
             <source 
               src={linkVideo} 
               type="video/mp4"
